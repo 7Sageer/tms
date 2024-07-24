@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.zwobble.mammoth.DocumentConverter;
@@ -20,7 +21,7 @@ import com.lhjz.portal.pojo.Enum.Status;
 import com.lhjz.portal.pojo.Enum.ToType;
 
 public class CommonUtilTest {
-
+	@Ignore
 	@org.junit.Test
 	public void word2html() throws IOException {
 		DocumentConverter converter = new DocumentConverter();

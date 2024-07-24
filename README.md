@@ -1,119 +1,98 @@
-# TMS(Teamwork Management System)
-> TMS是基于频道模式的团队沟通协作+轻量级任务看板，支持mardown、富文本、在线表格和思维导图的团队博文wiki，i18n国际化翻译管理的响应式web开源团队协作系统。
+# TMS (Teamwork Management System)
 
-**代码仓库:**  
-- gitee：https://gitee.com/xiweicheng/tms  
-- github：https://github.com/xiweicheng/tms  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/xiweicheng/tms.svg)](https://github.com/xiweicheng/tms/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/xiweicheng/tms.svg)](https://github.com/xiweicheng/tms/network)
+[![GitHub issues](https://img.shields.io/github/issues/xiweicheng/tms.svg)](https://github.com/xiweicheng/tms/issues)
 
- **前端代码仓库（代码已经压缩打包到tms仓库中）：** 
-- 沟通博文：https://gitee.com/xiweicheng/tms-frontend
-- 着陆首页：https://gitee.com/xiweicheng/tms-landing
+TMS是一个响应式的开源团队协作系统，基于频道模式进行团队沟通和轻量级任务管理。它支持Markdown、富文本、在线表格和思维导图的团队博文wiki，以及i18n国际化翻译管理。
 
-## 操作手册
+![TMS Screenshot](https://images.gitee.com/uploads/images/2020/0524/095513_cf21d89f_19723.png)
 
-- [TMS用户手册（使用指导）](https://gitee.com/xiweicheng/tms/wikis/%E7%9D%80%E9%99%86%E9%A1%B5?sort_id=3692705)
+## 目录
 
-## 如何运行
+- [主要特性](#主要特性)
+- [快速开始](#快速开始)
+- [安装与部署](#安装与部署)
+- [功能概述](#功能概述)
+- [贡献](#贡献)
+- [赞助](#赞助)
+- [许可证](#许可证)
+- [免责声明](#免责声明)
 
-- [如何在开发工具中运行](https://gitee.com/xiweicheng/tms/wikis/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E4%B8%AD%E8%BF%90%E8%A1%8C?sort_id=351959)
-- [TMS安装部署（传统方式）](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%EF%BC%89?sort_id=21982)
-- [TMS安装部署（docker-compose）](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88docker-compose%EF%BC%89?sort_id=21977)
-- [TMS安装部署（k8s方式）](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88k8s%E6%96%B9%E5%BC%8F%EF%BC%89?sort_id=3201498)
+## 主要特性
 
+- 📢 团队协作沟通（类似Slack和Bearychat）
+- 📝 团队博文wiki（类似精简版Confluence和蚂蚁笔记）
+- 🌐 国际化（i18n）翻译管理
+- 📱 响应式设计，支持移动端
 
-## Image show
+## 快速开始
 
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0524/095513_cf21d89f_19723.png "屏幕截图.png")
-- 着陆页
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0524/095934_1f5d8d9f_19723.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0524/100018_b2efad09_19723.png "屏幕截图.png")
-- 沟通
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0524/095724_988eab53_19723.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0524/095637_6624a690_19723.png "屏幕截图.png")
-- 博文
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0524/095759_aed0a835_19723.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1016/112533_8bb4e2a0_19723.png "屏幕截图.png")
-- i18n国际化翻译
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0524/100111_088dcdf4_19723.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0524/100201_956e39e6_19723.png "屏幕截图.png")
+### 文档
 
-## GIF show 
+📖 [用户手册](https://gitee.com/xiweicheng/tms/wikis/%E7%9D%80%E9%99%86%E9%A1%B5?sort_id=3692705)
 
-**着陆页** 
-![着陆页](http://imagizer.imageshack.us/a/img923/7662/AC8F68.gif)
+### 代码仓库
 
-**国际化翻译**  
-![国际化翻译](http://imageshack.com/a/img924/7042/t1Lto8.gif) 
+- 🦊 Gitee：[https://gitee.com/xiweicheng/tms](https://gitee.com/xiweicheng/tms)
+- 🐱 GitHub：[https://github.com/xiweicheng/tms](https://github.com/xiweicheng/tms)
 
-**团队沟通**  
-![团队沟通](http://imageshack.com/a/img923/9146/CaecMK.gif) 
+## 安装与部署
 
-**团队博文(wiki)**  
-![团队博文](http://imageshack.com/a/img922/9337/yhtpMU.gif) 
+选择适合您的部署方式：
 
-**移动端响应式设计**  
-![移动端响应式设计](http://imageshack.com/a/img923/4710/QkXzJb.gif) 
+1. [在开发工具中运行](https://gitee.com/xiweicheng/tms/wikis/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E4%B8%AD%E8%BF%90%E8%A1%8C?sort_id=351959)
+2. [传统方式部署](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%EF%BC%89?sort_id=21982)
+3. [使用Docker Compose部署](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88docker-compose%EF%BC%89?sort_id=21977)
+4. [在Kubernetes上部署](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88k8s%E6%96%B9%E5%BC%8F%EF%BC%89?sort_id=3201498)
 
-## 具有以下功能:
-- 团队协作沟通功能(类似于[slack](https://slack.com/) [bearychat](https://bearychat.com/))
-- 团队博文(wiki) 类似 [精简版confluence](http://baike.baidu.com/link?url=0TtAZuIP9nh31TCEQVSjtgS6-oUt9_M2mgdHu3XBSgF8DZR7u_Yv-XmUK3Yz133kx_2AhlFufEJhHJOgshXJJYst78ahDRto5NsSwWqdMBy) [蚂蚁笔记](https://leanote.com/)
-- 国际化翻译管理.
+## 功能概述
 
-#### 沟通功能（基于websocket实时通讯）
-- 频道(组团沟通)（二级话题消息沟通）
-- 私聊(一对一)
-- markdown语法支持(内容排版不再单调)
-- @消息 收藏消息 富文本消息目录
-- 频道外链（便于团队将常用链接统一到一处）
-- 频道甘特图（方便项目整体规划管理）
-- 频道任务看板（可拖拽）
-- 频道固定消息
-- 日程安排(提醒)
-- 待办事项
-- 沟通消息标记表情&标签（方便分类过滤检索）
-- 剪贴板上传图片, 拖拽文件上传(就是这么便捷)
-- 文件上传，从csv、excel导入mardown表格
-- 邮件通知、桌面通知、toastr通知(不用担心错过什么)
-- 热键支持(鼠标点多了也累不是)
-- 自定义皮肤色调
-- 自定义频道组（方便批量一次性@一类多个人）
-- 更多贴心便捷操作等你发现
+### 团队协作沟通
 
-#### 团队博文(wiki)
-- 博文空间(便于博文组织,权限隔离)
-- Markdown、Html富文本、电子表格、思维导图、图表工具多种类型博文创作方式
-- 基于博文模板创建（可自由发布私有、公开的模板）
-- 博文目录（支持拖拽排序）、标签
-- 父子级博文（支持五级父子博文）
-- 博文关注,收藏,历史（版本比较、回退）,权限,点赞,分享,开放游客访问
-- 博文评论
-- 博文多人协作编辑（需开启博文协助权限）
-- 导出 pdf、markdown、html、excel、png
-- 基于websocket的博文更新实时通知（协作更及时便捷）
-- 完整的博文操作变更历史审计和通知消息中心
-- 更多贴心便捷操作等你发现
+- 🔄 基于WebSocket的实时通讯
+- 🗨️ 频道（组团沟通）和私聊（一对一）
+- ✍️ Markdown语法支持
+- 🔔 @消息、收藏消息、富文本消息目录
+- 📊 频道任务看板（可拖拽）
+- 📅 日程安排和待办事项
+- 📁 文件上传和分享
+- 📬 邮件通知、桌面通知、Toastr通知
+- 🎨 自定义皮肤色调
 
+### 团队博文 (Wiki)
 
-#### 国际化（i18n）翻译管理
-**包括以下核心功能模块**
-- 翻译项目管理
-- 翻译语言管理
-- 翻译导入导出
-- 翻译管理
+- 📝 多种创作方式：Markdown、HTML富文本、电子表格、思维导图、图表工具
+- 🔄 博文版本控制和协作编辑
+- 📤 导出为PDF、Markdown、HTML、Excel、PNG
+- 💬 博文评论和实时更新通知
 
-#### 其他功能
-- 系统设置
-- 用户管理
+### 国际化（i18n）翻译管理
 
-#### 赞助
-- ![支付宝转账赞助](https://git.oschina.net/uploads/images/2017/0511/150721_33f53da9_19723.jpeg "支付宝转账赞助") 
-- ![微信支付转账赞助](https://git.oschina.net/uploads/images/2017/0511/150742_d8f40866_19723.png "微信支付转账赞助") 
-- 或者通过项目提供的赞助入口赞助. 
+- 🌍 翻译项目管理
+- 🗣️ 翻译语言管理
+- 📥📤 翻译导入导出
 
-#### 免责声明
+## 贡献
 
-> TMS项目中使用了不少很棒的第三方的开源依赖库，如果计划将本TMS软件用于商业通途，可能部分依赖库涉及到版权授权和付费购买问题，请自行联系并且购买相关依赖库的版本授权License，**对于可能发生的版权纠纷和侵权等问题，TMS软件在此声明将不承担任何法律责任**，在此感谢您对于对于TMS的喜爱和鼓励，谢谢！  
+我们欢迎任何形式的贡献！如果您发现了bug或有新功能建议，请[提交issue](https://github.com/xiweicheng/tms/issues/new)或[创建pull request](https://github.com/xiweicheng/tms/compare)。
 
+## 赞助
 
-#### 许可(license)
-MIT
+如果您觉得TMS对您有帮助，可以考虑赞助我们：
+
+<details>
+<summary>点击查看赞助二维码</summary>
+
+![赞助二维码](path_to_qr_code_image)
+
+</details>
+
+## 许可证
+
+TMS采用MIT许可证。请查看[LICENSE](LICENSE)文件了解更多信息。
+
+## 免责声明
+
+TMS项目使用了许多优秀的第三方开源库。如果您计划将TMS用于商业用途，请确保您已获得所有依赖库的适当许可。TMS不对可能发生的任何版权纠纷或侵权问题承担法律责任。

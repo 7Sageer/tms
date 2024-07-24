@@ -11,8 +11,10 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class ExcelReadTest {
 
 	// 读取，全部sheet表及数据

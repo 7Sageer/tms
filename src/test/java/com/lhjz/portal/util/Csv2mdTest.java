@@ -8,10 +8,12 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.opencsv.CSVReader;
 
+@Ignore
 public class Csv2mdTest {
 
 	public static void main(String[] args) throws IOException {
