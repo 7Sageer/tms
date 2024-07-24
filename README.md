@@ -1,24 +1,16 @@
 # TMS (Teamwork Management System)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub stars](https://img.shields.io/github/stars/xiweicheng/tms.svg)](https://github.com/xiweicheng/tms/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/xiweicheng/tms.svg)](https://github.com/xiweicheng/tms/network)
-[![GitHub issues](https://img.shields.io/github/issues/xiweicheng/tms.svg)](https://github.com/xiweicheng/tms/issues)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://gitee.com/sageer_return/tms/releases)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://gitee.com/sageer_return/tms/actions)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+<p align="center"><a href="#主要特性">主要特性</a> • <a href="#快速开始">快速开始</a> • <a href="#安装部署">安装部署</a> • <a href="#开发手册">开发手册</a> • <a href="#许可证">许可证</a></p>
 
 TMS是一个响应式的开源团队协作系统，基于频道模式进行团队沟通和轻量级任务管理。它支持Markdown、富文本、在线表格和思维导图的团队博文wiki，以及i18n国际化翻译管理。
 
 ![TMS Screenshot](https://images.gitee.com/uploads/images/2020/0524/095513_cf21d89f_19723.png)
 
-## 目录
-
-- [主要特性](#主要特性)
-- [快速开始](#快速开始)
-- [安装与部署](#安装与部署)
-- [功能概述](#功能概述)
-- [贡献](#贡献)
-- [赞助](#赞助)
-- [许可证](#许可证)
-- [免责声明](#免责声明)
+在线演示: 🏗️ 施工中 🏗️
 
 ## 主要特性
 
@@ -29,23 +21,59 @@ TMS是一个响应式的开源团队协作系统，基于频道模式进行团�
 
 ## 快速开始
 
-### 文档
+📖 [用户手册](https://gitee.com/sageer_return/tms/wikis/pages?sort_id=11385516&doc_id=5756581)
 
-📖 [用户手册](https://gitee.com/xiweicheng/tms/wikis/%E7%9D%80%E9%99%86%E9%A1%B5?sort_id=3692705)
+❓ [常见问题](https://gitee.com/sageer_return/tms/wikis/pages?sort_id=11385516&doc_id=5756581)
 
 ### 代码仓库
 
-- 🦊 Gitee：[https://gitee.com/xiweicheng/tms](https://gitee.com/xiweicheng/tms)
-- 🐱 GitHub：[https://github.com/xiweicheng/tms](https://github.com/xiweicheng/tms)
+- 🦊 Gitee：[https://gitee.com/sageer_return/tms](https://gitee.com/sageer_return/tms)
+- 🐱 GitHub：🏗️ 施工中 🏗️
 
-## 安装与部署
+## 安装部署
 
-选择适合您的部署方式：
+### 1.从源码编译部署
 
-1. [在开发工具中运行](https://gitee.com/xiweicheng/tms/wikis/%E5%A6%82%E4%BD%95%E5%9C%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E4%B8%AD%E8%BF%90%E8%A1%8C?sort_id=351959)
-2. [传统方式部署](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88%E4%BC%A0%E7%BB%9F%E6%96%B9%E5%BC%8F%EF%BC%89?sort_id=21982)
-3. [使用Docker Compose部署](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88docker-compose%EF%BC%89?sort_id=21977)
-4. [在Kubernetes上部署](https://gitee.com/xiweicheng/tms/wikis/TMS%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2%EF%BC%88k8s%E6%96%B9%E5%BC%8F%EF%BC%89?sort_id=3201498)
+#### 环境要求
+
+- JDK 1.8
+- MySQL 5.6-8.0
+- Maven 3.3+
+
+> ⚠️ 注意
+过高版本的JDK和MySQL可能会导致编译失败或运行异常。如果你想用更高版本的MySQL,请看[这里](https://gitee.com/sageer_return/tms/wikis/pages?sort_id=11385549&doc_id=5756581)。
+
+##### 1. 克隆代码仓库
+
+``` bash
+git clone https://gitee.com/sageer_return/tms.git
+cd tms
+```
+
+##### 2. 创建数据库
+
+``` sql
+CREATE DATABASE ${db_name} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+```
+##### 3. 修改配置文件
+
+修改`application.properties`文件的 `spring.profiles.active` 属性为 `prod`，并编辑`application-prod.properties`文件中的数据库配置:
+
+``` properties
+spring.datasource.url=jdbc:mysql://${ip}:${port}/${db_name}?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+spring.datasource.username=${db_username}
+spring.datasource.password=${db_password}
+```
+
+##### 4. 编译打包
+
+``` bash
+mvn clean package -Dmaven.test.skip=true
+```
+
+### 2.使用Docker部署
+
+🏗️ 施工中 🏗️
 
 ## 功能概述
 
@@ -74,20 +102,11 @@ TMS是一个响应式的开源团队协作系统，基于频道模式进行团�
 - 🗣️ 翻译语言管理
 - 📥📤 翻译导入导出
 
-## 贡献
+## 开发手册
 
-我们欢迎任何形式的贡献！如果您发现了bug或有新功能建议，请[提交issue](https://github.com/xiweicheng/tms/issues/new)或[创建pull request](https://github.com/xiweicheng/tms/compare)。
-
-## 赞助
-
-如果您觉得TMS对您有帮助，可以考虑赞助我们：
-
-<details>
-<summary>点击查看赞助二维码</summary>
-
-![赞助二维码](path_to_qr_code_image)
-
-</details>
+🧑‍💻 [开发指导](https://gitee.com/sageer_return/tms/wikis/pages?sort_id=11385558&doc_id=5756581)
+⚙️ [配置手册](https://gitee.com/sageer_return/tms/wikis/pages?sort_id=11385569&doc_id=5756581)
+🎁 [参与贡献](https://gitee.com/sageer_return/tms/wikis/pages?sort_id=11385542&doc_id=5756581)
 
 ## 许可证
 
