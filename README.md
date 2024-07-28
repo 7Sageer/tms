@@ -1,6 +1,6 @@
 # TMS (Teamwork Management System)
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://gitee.com/sageer_return/tms/releases)
+[![Version](https://img.shields.io/badge/version-2.28.0-blue.svg)](https://gitee.com/sageer_return/tms/releases)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://gitee.com/sageer_return/tms/actions)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -10,7 +10,7 @@ TMS是一个响应式的开源团队协作系统，基于频道模式进行团�
 
 ![TMS Screenshot](https://images.gitee.com/uploads/images/2020/0524/095513_cf21d89f_19723.png)
 
-在线演示: 🏗️ 施工中 🏗️
+演示地址: 🏗️ 施工中 🏗️
 
 ## 主要特性
 
@@ -37,25 +37,26 @@ TMS是一个响应式的开源团队协作系统，基于频道模式进行团�
 #### 环境要求
 
 - JDK 1.8
-- MySQL 5.6-8.0
+- MySQL 5.6
 - Maven 3.3+
 
 > ⚠️ 注意
-过高版本的JDK和MySQL可能会导致编译失败或运行异常。如果你想用更高版本的MySQL,请看[这里](https://gitee.com/sageer_return/tms/wikis/pages?sort_id=11385549&doc_id=5756581)。
+高版本的JDK和MySQL可能会导致编译失败或运行异常。如果你想用更高版本的MySQL,请看[这里](https://gitee.com/sageer_return/tms/wikis/pages?sort_id=11385549&doc_id=5756581)。
 
-##### 1. 克隆代码仓库
+##### a. 克隆代码仓库
 
 ``` bash
 git clone https://gitee.com/sageer_return/tms.git
 cd tms
 ```
 
-##### 2. 创建数据库
+##### b. 创建数据库
 
 ``` sql
 CREATE DATABASE ${db_name} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
-##### 3. 修改配置文件
+
+##### c. 修改配置文件
 
 修改`application.properties`文件的 `spring.profiles.active` 属性为 `prod`，并编辑`application-prod.properties`文件中的数据库配置:
 
@@ -65,15 +66,50 @@ spring.datasource.username=${db_username}
 spring.datasource.password=${db_password}
 ```
 
-##### 4. 编译打包
+##### d. 编译打包
 
 ``` bash
 mvn clean package -Dmaven.test.skip=true
 ```
 
-### 2.使用Docker部署
+### 2.使用 Docker-compose 部署
 
-🏗️ 施工中 🏗️
+#### a. 克隆代码仓库
+
+``` bash
+git clone https://gitee.com/sageer_return/tms.git
+cd tms
+```
+
+#### b. 修改配置文件
+
+修改`application.properties`文件的 `spring.profiles.active` 属性为 `prod`，并编辑`application-prod.properties`文件中的数据库配置:
+
+``` properties
+spring.datasource.url=jdbc:mysql://db:3306/tms?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+spring.datasource.username=root
+spring.datasource.password=pingan
+```
+
+> ⚠️ 注意
+这里数据库端口和密码应均保留默认值，如果需要修改，请同时修改项目根目录下`docker-compose.yml`文件中的`MYSQL_ROOT_PASSWORD`和 `db`服务的`ports`。
+
+#### c. 构建镜像
+
+建议使用JDK 1.8版本构建镜像，否则可能会导致编译失败。
+
+``` bash
+cd tms
+mvn clean package -Dmaven.test.skip=true
+```
+
+#### d. 使用 Docker-compose 启动
+
+``` bash
+docker-compose up -d
+```
+
+服务将会启动在`http://localhost:8090`。
 
 ## 功能概述
 
