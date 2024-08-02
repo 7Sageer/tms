@@ -1,8 +1,6 @@
 version: "3"
 services:
   web:
-    build:
-      context: .
     image: qihr2022/tms-web
     networks:
       - backend
@@ -11,8 +9,6 @@ services:
     depends_on:
       - "db"
   db:
-    build:
-      context: ./db/mysql
     image: qihr2022/tms-db
     environment:
       - MYSQL_ROOT_PASSWORD=747576
