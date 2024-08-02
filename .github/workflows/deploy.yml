@@ -21,6 +21,7 @@ jobs:
 
       - name: Build and push Docker images
         run: |
+          apt install docker.io docker-compose
           docker-compose build
           docker-compose push
 
