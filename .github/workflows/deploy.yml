@@ -10,10 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Docker
-        run: |
-          curl -fsSL https://get.docker.com -o get-docker.sh
-          sudo sh get-docker.sh
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+
+      - name: Build with Maven
+        run: mvn clean package -Dmaven.test.skip=true
 
       - name: Install Docker Compose
         run: |
