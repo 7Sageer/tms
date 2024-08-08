@@ -1,0 +1,19 @@
+<template>
+    <require from="./em-blog-share-ppt-content.css"></require>
+    <div class="em-blog-share-ppt-content">
+        <h1 class="ui dividing header">
+		  ${blog.title}
+        </h1>
+        <div show.bind="blog.editor == 'Mind'">
+            <em-blog-mind blog.bind="blog"></em-blog-mind>
+        </div>
+        <div show.bind="blog.editor == 'Excel'">
+            <em-blog-excel blog.bind="blog"></em-blog-excel>
+        </div>
+        <div show.bind="blog.editor == 'Sheet'">
+            <em-blog-sheet blog.bind="blog"></em-blog-sheet>
+        </div>
+        <div show.bind="blog.editor != 'Mind' && blog.editor != 'Excel' && blog.editor != 'Sheet'" ref="mkRef" fancybox style="margin-top: 32px;"
+            class="tms-blog-content markdown-body fr-view" innerhtml.bind="blog.content | parseMd:blog.editor"></div>
+    </div>
+</template>

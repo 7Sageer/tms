@@ -1,0 +1,51 @@
+<template>
+    <require from="./em-blog-summary.css"></require>
+    <div class="em-blog-summary">
+        <div class="ui divided items">
+            <div class="item tms-blog-item" repeat.for="item of blogs" data-id="${item.id}" fancybox>
+                <div class="content">
+                    <div class="item-like row">
+                        <a class="header" href="#/${sid ? sid + '/' : ''}blog/${item.id}">${item.title}</a>
+                        <div>
+                            <a class="ui basic label tms-blog-space" href="#/${item.space.name}/home"
+                                show.bind="item.space.name">${item.space.name}</a>
+                        </div>
+                    </div>
+                    <div class="meta row">
+                        <i class="history icon"></i> <span class="cinema"
+                            title="${item.creator.username}">${item.creator.name ? item.creator.name :
+                            item.creator.username}</span>发布于
+                        <span class="cinema" title="${item.createDate | date}">${item.createDate | timeago}</span>
+                        <span>|</span>&nbsp;<i class="unhide icon"></i> <span class="cinema"
+                            title="已阅读次数">${item.readCnt}</span>
+                        <span show.bind="item.tags && item.tags.length > 0">|</span>&nbsp;<i class="tags icon"
+                            show.bind="item.tags && item.tags.length > 0"></i>
+                        <div class="ui label" repeat.for="tag of item.tags">${tag.name}</div>
+                    </div>
+                    <div show.bind="item.editor == 'Mind'" class="item-mind">
+                        <em-blog-mind blog.bind="item"></em-blog-mind>
+                    </div>
+                    <div show.bind="item.editor == 'Excel'" class="item-excel">
+                        <em-blog-excel blog.bind="item"></em-blog-excel>
+                    </div>
+                    <div show.bind="item.editor == 'Sheet'" class="item-sheet">
+                        <em-blog-sheet blog.bind="item"></em-blog-sheet>
+                    </div>
+                    <div show.bind="item.editor != 'Mind' && item.editor != 'Excel' && item.editor != 'Sheet'" class="row description">
+                        <div class="tms-blog-content markdown-body fr-view" id="article"
+                            innerhtml.bind="item.content | parseMd:item.editor">
+                        </div>
+                        <div class="image" if.bind="item.content | existImg:item.editor">
+                            <img src="${item.content | parseImg:item.editor}">
+                        </div>
+                    </div>
+                </div>
+                <a href="#/${sid ? sid + '/' : ''}blog/${item.id}" class="tms-blog-item-action"><span>继续阅读全文</span></a>
+            </div>
+        </div>
+        <div if.bind="!blogPage.last" click.delegate="moreHandler()" class="ui fluid basic button"><i
+                show.bind="ajax && ajax.readyState != 4" class="spinner loading icon"></i>
+            更多 (${blogPage.totalElements - (blogPage.size * (blogPage.number + 1))})
+        </div>
+    </div>
+</template>

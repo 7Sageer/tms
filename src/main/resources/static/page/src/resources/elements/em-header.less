@@ -1,0 +1,21 @@
+.em-header {
+    .tms-register-btn {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    a.header.item {
+        font-size: 20px!important;
+        color: blue!important;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .right.menu {
+        a.item > span {
+            @media only screen and (max-width: 767px) {
+                display: none;
+            }
+        }
+    }
+}

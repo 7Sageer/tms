@@ -1,0 +1,26 @@
+<template>
+    <require from="./em-space-blog.css"></require>
+    <div class="em-space-blog blurring">
+        <div class="ui dimmer ppt-dimmer">
+            <div class="ui container segment">
+                <em-blog-share-ppt-content blog.bind="blogInfo.blog"></em-blog-share-ppt-content>
+            </div>
+        </div>
+        <div class="ui container" style="background-color: white;">
+            <em-header sid.bind="sid"></em-header>
+            <div class="ui divider"></div>
+            <div class="ui internally celled stackable grid">
+                <div class="eleven wide column">
+                    <em-blog-content blog-info.bind="blogInfo"></em-blog-content>
+                    <em-blog-comment sid.bind="sid" id.bind="id"></em-blog-comment>
+                </div>
+                <div class="five wide column">
+                    <em-blog-dir></em-blog-dir>
+                    <em-blog-list sid.bind="sid" id.bind="id"></em-blog-list>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+            <em-footer></em-footer>
+        </div>
+    </div>
+</template>
