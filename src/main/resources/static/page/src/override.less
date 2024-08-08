@@ -1,0 +1,45 @@
+.ui.dimmer {
+    background-color: rgba(0, 0, 0, 0.5)!important;
+    &.page.modals {
+        z-index: 10000;
+    }
+}
+
+.ui.modal {
+    >.actions {
+        >.ui.left.floated.button {
+            margin-left: 3.5px;
+        }
+    }
+}
+
+.ui.list .list .item {
+    display: list-item!important;
+    table-layout: fixed;
+    height: auto!important;
+    visibility: visible!important;
+}
+
+.ui.list .list .item:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+// @media only screen and (min-width: 1200px) and (max-width: 1799px) {
+//     .ui.container {
+//         width: 1127px;
+//         margin-left: auto!important;
+//         margin-right: auto!important;
+//     }
+// }
+
+// @media only screen and (min-width: 1800px) {
+//     .ui.container {
+//         width: 1600px!important;
+//         margin-left: auto!important;
+//         margin-right: auto!important;
+//     }
+// }

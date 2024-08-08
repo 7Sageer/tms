@@ -1,0 +1,19 @@
+<template>
+  <require from="./em-space-home.css"></require>
+  <div class="em-space-home">
+        <div class="ui container" style="background-color: white;">
+            <em-header sid.bind="sid"></em-header>
+            <div class="ui divider"></div>
+            <div class="ui internally celled stackable grid">
+                <div class="eleven wide column" style="padding-top: 0;">
+                	<em-blog-summary sid.bind="sid"></em-blog-summary>
+                </div>
+                <div class="five wide column">
+                    <em-blog-list sid.bind="sid"></em-blog-list>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+            <em-footer></em-footer>
+        </div>
+    </div>
+</template>

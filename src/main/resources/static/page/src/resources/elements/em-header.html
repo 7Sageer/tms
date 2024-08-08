@@ -1,0 +1,33 @@
+<template>
+    <require from="./em-header.css"></require>
+    <div class="em-header">
+        <div class="ui text menu container" style="margin-top: 0; padding: 16px 0;">
+            <a class="item" href="/">
+                <img ref="logoRef" src="img/tms-x32.png" alt="">
+            </a>
+            <a href="${sid ? '#/' + sid + '/home' : '#/home'}" class="header item">${sid ? sid : 'TMS 团队协作系统'}</a>
+            <div class="right menu">
+                <div class="item" if.bind="!user">
+                    <a href="/login" class="ui blue inverted button">登录</a>
+                    <a class="tms-register-btn" href="/page/index.html#/register" style="margin-left: 16px;">注册</a>
+                </div>
+                <a class="item" href="/page/index.html" if.bind="user">
+                    <i class="talk icon"></i>
+                    <span>沟通</span>
+                </a>
+                <a class="item" href="/page/index.html#/blog" if.bind="user">
+                    <i class="wikipedia icon"></i>
+                    <span>博文</span>
+                </a>
+                <a class="item" href="/admin" if.bind="user">
+                    <i class="user icon"></i>
+                    <span>${user.name ? user.name : user.username}</span>
+                </a>
+                <a if.bind="user" click.delegate="logoutHandler()" class="item">
+                    <i class="sign out icon"></i>
+                    <span>退出</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</template>

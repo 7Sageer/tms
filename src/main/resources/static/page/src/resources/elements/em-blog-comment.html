@@ -1,0 +1,50 @@
+<template>
+    <require from="./em-blog-comment.css"></require>
+    <div class="em-blog-comment">
+        <div class="ui minimal comments" ref="blogCommentsRef">
+            <h3 class="ui dividing header"><i class="blue comments outline icon"></i> ${comments.length > 0 ?
+                comments.length + ' ' : '暂无'}评论</h3>
+            <div repeat.for="item of comments" class="comment tms-blog-comment" data-id="${item.id}">
+                <em-user-avatar user.bind="item.creator"></em-user-avatar>
+                <div class="content">
+                    <a class="author" data-value=${item.creator.username}>${item.creator.name}</a>
+                    <div class="metadata">
+                        <span class="date" data-timeago="${item.createDate}"
+                            title="${item.createDate | date}">${item.createDate | timeago}</span>
+                        <div class="rating">
+                            <i
+                                class="thumbs ${item.voteZan && item.voteZan.split(',').includes(loginUser.username) ? '' : 'outline'} up icon"></i>
+                            <span title="${item.voteZan}">${item.voteZanCnt ? item.voteZanCnt : ''} 赞</span>
+                        </div>
+                    </div>
+                    <div if.bind="item.editor == 'Mind'">
+                        <em-blog-mind comment.bind="item"></em-blog-mind>
+                    </div>
+                    <div if.bind="item.editor == 'Excel'">
+                        <em-blog-excel comment.bind="item"></em-blog-excel>
+                    </div>
+                    <div if.bind="item.editor == 'Sheet'">
+                        <em-blog-sheet comment.bind="item"></em-blog-sheet>
+                    </div>
+                    <div show.bind="item.editor != 'Mind' && item.editor != 'Excel' && item.editor != 'Sheet'"" fancybox
+                        show.bind="!item.isEditing" ref="mkbodyRef" class="text markdown-body fr-view"
+                        innerhtml.bind="item.content | parseMd:item.editor | emoji:mkbodyRef"></div>
+                    <div class="actions">
+                        <div if.bind="isSuper || item.creator.username == loginUser.username" ui-dropdown-action
+                            style="margin-right: .75em;" class="ui icon top right pointing dropdown" title="移除评论">
+                            <i class="red large trash outline icon"></i>
+                            <div class="menu">
+                                <div style="color: red;" class="item" click.delegate="removeHandler(item)"><i
+                                        class="trash outline icon"></i>确认移除</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui divider" show.bind="comments && comments.length > 0"></div>
+            <div class="ui basic segment">
+                <a target="_blank" href="/page/index.html#/blog/${id ? id : shareBlogId}">登录用户去评论</a>
+            </div>
+        </div>
+    </div>
+</template>
