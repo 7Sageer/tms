@@ -85,7 +85,7 @@ public class Enum {
     }
 
     public enum SettingType {
-        Mail, Menus;
+        Mail, Menus, Wopi;
     }
 
     public enum ToType {

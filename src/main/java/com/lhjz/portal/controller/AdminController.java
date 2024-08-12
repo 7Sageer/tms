@@ -49,10 +49,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -470,6 +467,60 @@ public class AdminController extends BaseController {
         return "admin/import";
     }
 
+    @RequestMapping("wopi-setting")
+    @Secured({"ROLE_SUPER", "ROLE_ADMIN"})
+    public String wopiSetting(Model model) {
+        Setting setting = settingRepository.findOneBySettingType(SettingType.Wopi);
+
+        Map<String, Object> wopiSettings;
+        if (setting == null) {
+            wopiSettings = new HashMap<>();
+            wopiSettings.put("editorUrl", "");
+            wopiSettings.put("jwtSecret", "");
+        } else {
+            wopiSettings = JsonUtil.json2Object(setting.getContent(), Map.class);
+            assert wopiSettings != null;
+            // 出于安全考虑,不返回实际的JWT secret
+            wopiSettings.put("jwtSecret", "");
+        }
+
+        model.addAttribute("wopi", wopiSettings);
+
+        initMenus(model);
+
+        return "admin/setting";
+    }
+
+    @PostMapping("save-wopi-setting")
+    @Secured({"ROLE_SUPER", "ROLE_ADMIN"})
+    public String saveWopiSetting(@RequestParam Map<String, String> params) {
+        Setting setting = settingRepository.findOneBySettingType(SettingType.Wopi);
+        if (setting == null) {
+            setting = new Setting();
+            setting.setSettingType(SettingType.Wopi);
+        }
+
+        Map<String, Object> wopiSettings = new HashMap<>();
+        wopiSettings.put("editorUrl", params.get("editorUrl"));
+
+        // 只有在提供了新的JWT secret时才更新它
+        String newJwtSecret = params.get("jwtSecret");
+        if (newJwtSecret != null && !newJwtSecret.isEmpty()) {
+            wopiSettings.put("jwtSecret", newJwtSecret);
+        } else if (setting.getContent() != null) {
+            // 如果没有提供新的secret,保留旧的secret
+            Map<String, Object> oldSettings = JsonUtil.json2Object(setting.getContent(), Map.class);
+            if (oldSettings != null && oldSettings.containsKey("jwtSecret")) {
+                wopiSettings.put("jwtSecret", oldSettings.get("jwtSecret"));
+            }
+        }
+
+        setting.setContent(JsonUtil.toJson(wopiSettings));
+        settingRepository.save(setting);
+
+        return "redirect:/admin/setting";
+    }
+
     @SuppressWarnings("unchecked")
     @RequestMapping("setting")
     @Secured({"ROLE_SUPER", "ROLE_ADMIN"})
@@ -495,6 +546,19 @@ public class AdminController extends BaseController {
 
             model.addAttribute("mail", mailSettings);
         }
+
+        Setting wopiSetting = settingRepository.findOneBySettingType(SettingType.Wopi);
+        Map<String, Object> wopiSettings;
+        if (wopiSetting == null) {
+            wopiSettings = new HashMap<>();
+            wopiSettings.put("editorUrl", "");
+            wopiSettings.put("jwtSecret", "");
+        } else {
+            wopiSettings = JsonUtil.json2Object(wopiSetting.getContent(), Map.class);
+            // 出于安全考虑，不返回实际的 JWT secret
+            wopiSettings.put("jwtSecret", "");
+        }
+        model.addAttribute("wopi", wopiSettings);
 
         initMenus(model);
 

@@ -10,6 +10,8 @@ services:
       - "8090:8080"
     depends_on:
       - "db"
+    volumes:
+      - /usr/local/tomcat/webapps/ROOT/upload:/usr/local/tomcat/webapps/ROOT/upload
   db:
     build:
       context: ./db/mysql

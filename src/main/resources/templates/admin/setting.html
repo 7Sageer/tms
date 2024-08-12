@@ -21,6 +21,7 @@
 <body>
 	<div th:replace="admin/index :: sidebar-menu"></div>
 	<div th:replace="admin/index :: top-fixed-menu"></div>
+
 	<div class="pusher ad-index-content">
 		<div class="ad-index-container">
 			<div th:replace="admin/index :: rail-menu"></div>
@@ -33,6 +34,10 @@
 						</div>
 						<div class="ui fluid vertical pointing menu" data-tab="menus">
 							<a class="item"><i class="content icon"></i> 菜单功能设置</a>
+						</div>
+						<!-- 新增WOPI设置菜单项 -->
+						<div class="ui fluid vertical pointing menu" data-tab="wopi">
+							<a class="item"><i class="file alternate icon"></i> WOPI设置</a>
 						</div>
 					</div>
 					<div class="thirteen wide stretched column">
@@ -127,11 +132,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="ui basic segment tms-data-panel tms-wopi" style="display: none;">
+							<div class="ui form fm-wopi-setting">
+								<div class="required field">
+									<label>WOPI编辑器URL</label>
+									<input type="text" name="editorUrl" th:value="${wopi.editorUrl}" />
+								</div>
+								<div class="required field">
+									<label>JWT Secret</label>
+									<input type="password" name="jwtSecret" th:value="${wopi.jwtSecret}" />
+								</div>
+								<div class="ui blue submit button btn-save-wopi-setting">保存</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<div th:include="admin/template :: ad-page-common"></div>
 	<script type="text/javascript" th:src="@{/admin/js/deps-base.js}" src="../../static/admin/js/deps-base.js"></script>
 	<script type="text/javascript" th:src="@{/admin/js/admin.js}" src="../../static/admin/js/admin.js"></script>
@@ -212,6 +231,16 @@
 						}
 					});
 				}
+			});
+			$('.button.btn-save-wopi-setting').click(function (event) {
+				$.post('admin/save-wopi-setting', Utils.formData('.ui.form.fm-wopi-setting'),
+						function (data, textStatus, xhr) {
+							if (data.success) {
+								toastr.success('WOPI设置保存成功!');
+							} else {
+								toastr.error(data.data, 'WOPI设置保存失败!');
+							}
+						});
 			});
 
 		});
