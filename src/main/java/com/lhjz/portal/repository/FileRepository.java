@@ -28,6 +28,7 @@ import com.lhjz.portal.pojo.Enum.ToType;
  */
 public interface FileRepository extends JpaRepository<File, Long> {
 
+	File findByUuid(String uuid);
 	File findTopByUuidName(String uuidName);
 
 	List<File> findByAtId(String atId);

@@ -520,6 +520,23 @@ public final class StringUtil {
                 jsonBody);
     }
 
+    /**
+     * 获取文件扩展名.
+     *
+     * @param fileName
+     * @return
+     */
+    public static String getFileExtension(String fileName) {
+        if (fileName == null) {
+            return null;
+        }
+        int index = fileName.lastIndexOf(".");
+        if (index == -1) {
+            return "";
+        }
+        return fileName.substring(index + 1);
+    }
+
     public static String mdParse(String markdown) {
         Options options = new Options();
         options.setBreaks(true);
