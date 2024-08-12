@@ -51,5 +51,6 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd /root
+            export https_proxy=http://localhost:10809
             docker-compose pull web   # 只拉取 web 服务的新镜像
             docker-compose up -d      # 重新启动服务

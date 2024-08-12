@@ -4,12 +4,15 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.lhjz.portal.entity.File;
 import com.lhjz.portal.entity.Setting;
+import com.lhjz.portal.entity.security.User;
 import com.lhjz.portal.model.RespBody;
 import com.lhjz.portal.repository.FileRepository;
 import com.lhjz.portal.repository.SettingRepository;
 import com.lhjz.portal.pojo.Enum.SettingType;
+import com.lhjz.portal.repository.UserRepository;
 import com.lhjz.portal.util.StringUtil;
 import com.lhjz.portal.util.JsonUtil;
+import com.lhjz.portal.util.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +30,9 @@ public class WopiController {
 
     @Autowired
     private FileRepository fileRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private SettingRepository settingRepository;
@@ -93,15 +99,17 @@ public class WopiController {
 
         Map<String, Object> editorConfig = new HashMap<>();
         // 同样使用绝对 URL 构建 callbackUrl
-        String absoluteCallbackUrl = UriComponentsBuilder.fromHttpUrl(getBaseUrl(request))
-                .path("/api/wopi/")
-                .path(file.getUuidName())
-                .toUriString();
-        editorConfig.put("callbackUrl", absoluteCallbackUrl);
+//        String absoluteCallbackUrl = UriComponentsBuilder.fromHttpUrl(getBaseUrl(request))
+//                .path("/api/wopi/")
+//                .path(file.getUuidName())
+//                .toUriString();
+//        editorConfig.put("callbackUrl", absoluteCallbackUrl);
 
         Map<String, String> user = new HashMap<>();
-        user.put("id", "demo");
-        user.put("name", "John Doe");
+
+        final User loginUser = getLoginUser();
+        user.put("id", loginUser.getUsername());
+        user.put("name", loginUser.getName());
         editorConfig.put("user", user);
 
         editorConfig.put("lang", "zh");
@@ -125,7 +133,9 @@ public class WopiController {
             return "";
         }
     }
-
+    protected User getLoginUser() {
+        return userRepository.findOne(WebUtil.getUsername());
+    }
     private String getDocumentType(String fileName) {
         String extension = StringUtil.getFileExtension(fileName).toLowerCase();
         switch (extension) {
