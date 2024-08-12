@@ -51,7 +51,5 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd /root
-            wget https://raw.githubusercontent.com/7Sageer/tms/master/docker-compose-remote.yml
-            mv docker-compose-remote.yml docker-compose.yml
             docker-compose pull web   # 只拉取 web 服务的新镜像
             docker-compose up -d      # 重新启动服务
