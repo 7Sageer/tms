@@ -50,7 +50,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /usr/local
+            cd /root
             wget https://raw.githubusercontent.com/7Sageer/tms/master/docker-compose-remote.yml
             mv docker-compose-remote.yml docker-compose.yml
             docker-compose pull web   # 只拉取 web 服务的新镜像
