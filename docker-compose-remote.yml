@@ -8,8 +8,8 @@ services:
       - "8090:8080"
     depends_on:
       - "db"
-    volumes:
-      - /usr/local/tomcat/webapps/ROOT/upload:/usr/local/tomcat/webapps/ROOT/upload
+#    volumes:
+#      - upload_data:/usr/local/tomcat/webapps/ROOT/upload
   db:
     image: qihr2022/tms-db
     environment:
@@ -20,3 +20,5 @@ services:
       - "3307:3306"
 networks:
   backend:
+#volumes:
+#  upload_data:
