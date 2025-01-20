@@ -122,14 +122,54 @@
             action: 'hide'
         });
 
+        // 语言表单验证规则
+        var formValidationRules = {
+            name: {
+                identifier: 'name',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '语言名称不能为空'
+                    },
+                    {
+                        type: '^[a-z][a-z_]{1,9}$',
+                        prompt: '语言名称必须是2-10位字母下划线'
+                    }
+                ]
+            },
+            desc: {
+                identifier: 'desc',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '语言描述不能为空'
+                    },
+                    {
+                        type: 'maxLength[50]',
+                        prompt: '语言描述不能超过50个字符'
+                    }
+                ]
+            }
+        };
+
         $('.btn-add').click(function(event) {
 
             $('.ad-language-add').modal({
                 onShow: function() {
-                    $(this).find('.ui.form').form('clear');
+                    $(this).find('.ui.form')
+                        .form('clear')
+                        .form({
+                            fields: formValidationRules,
+                            inline: true,
+                            on: 'blur'
+                        });
                 },
                 onApprove: function() {
-                    var data = Utils.formData('.ad-language-add .ui.form');
+                    var $form = $('.ad-language-add .ui.form');
+                    if (!$form.form('is valid')) {
+                        return false;
+                    }
+                    var data = Utils.formData($form);
                     $.post('admin/language/create', data, function(data, textStatus, xhr) {
                         if (data.success) {
                             toastr.success("添加成功！");
@@ -171,12 +211,22 @@
                 if (data.success) {
                     $('.ad-language-edit').modal({
                         onShow: function() {
-                            $(this).find('.ui.form').form('clear');
+                            $(this).find('.ui.form')
+                                .form('clear')
+                                .form({
+                                    fields: formValidationRules,
+                                    inline: true,
+                                    on: 'blur'
+                                });
                             $(this).find('input[name="name"]').val(data.data.name);
                             $(this).find('textarea[name="desc"]').val(data.data.description);
                         },
                         onApprove: function() {
-                            var data = Utils.formData('.ad-language-edit .ui.form');
+                            var $form = $('.ad-language-edit .ui.form');
+                            if (!$form.form('is valid')) {
+                                return false;
+                            }
+                            var data = Utils.formData($form);
                             data.id = $btn.closest('tr').attr('data-id');
                             $.post('admin/language/update', data,
                                 function(data, textStatus, xhr) {

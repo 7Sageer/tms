@@ -165,21 +165,84 @@
             }
         });
 
-        $('.ad-project-add,.ad-project-edit').find('input[name="name"]').keyup(function(event) {
-            $(this).val($(this).val().toUpperCase());
-        });
+        // 完整的表单验证规则
+        var formValidationRules = {
+            name: {
+                identifier: 'name',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '项目名称不能为空'
+                    },
+                    {
+                        type: 'regExp[/^[A-Z0-9_]{3,10}$/]',
+                        prompt: '项目名称必须是3-10位大写字母、数字或下划线的组合'
+                    }
+                ]
+            },
+            desc: {
+                identifier: 'desc',
+                rules: [
+                    {
+                        type: 'maxLength[200]',
+                        prompt: '项目描述不能超过200个字符'
+                    }
+                ]
+            },
+            languages: {
+                identifier: 'languages',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '请至少选择一种项目语言'
+                    }
+                ]
+            },
+            language: {
+                identifier: 'language',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '请选择项目主语言'
+                    }
+                ]
+            },
+            watchers: {
+                identifier: 'watchers',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: '请至少添加一个关注者'
+                    }
+                ]
+            }
+        };
 
         $('.btn-add').click(function(event) {
 
             $('.ad-project-add').modal({
                 onShow: function() {
-                    $(this).find('.ui.form').form('clear');
+                    $(this).find('.ui.form')
+                        .form('clear')
+                        .form({
+                            fields: formValidationRules,
+                            inline: true,
+                            on: 'blur',
+                            onSuccess: function(event, fields) {
+                                // 验证通过时的处理
+                                return true;
+                            }
+                        });
                     $(this).find('.ui.dropdown.dd-watchers').dropdown({
                         forceSelection: false
                     }).dropdown('set selected', $('input:hidden[name="user.username"]').val());
                 },
                 onApprove: function() {
-                    var data = Utils.formData('.ad-project-add .ui.form');
+                    var $form = $('.ad-project-add .ui.form');
+                    if (!$form.form('is valid')) {
+                        return false;
+                    }
+                    var data = Utils.formData($form);
                     $.post('admin/project/create', data, function(data, textStatus, xhr) {
                         if (data.success) {
                             toastr.success("添加成功！");
@@ -241,7 +304,17 @@
                 if (data.success) {
                     $('.ad-project-edit').modal({
                         onShow: function() {
-                            $(this).find('.ui.form').form('clear');
+                            $(this).find('.ui.form')
+                                .form('clear')
+                                .form({
+                                    fields: formValidationRules,
+                                    inline: true,
+                                    on: 'blur',
+                                    onSuccess: function(event, fields) {
+                                        // 验证通过时的处理
+                                        return true;
+                                    }
+                                });
                             $(this).find('input[name="name"]').val(data.data.name);
                             $(this).find('textarea[name="desc"]').val(data.data.description);
 
@@ -261,7 +334,11 @@
                             }).dropdown('set selected', watchers)
                         },
                         onApprove: function() {
-                            var data = Utils.formData('.ad-project-edit .ui.form');
+                            var $form = $('.ad-project-edit .ui.form');
+                            if (!$form.form('is valid')) {
+                                return false;
+                            }
+                            var data = Utils.formData($form);
                             data.id = $btn.closest('tr').attr('data-id');
                             $.post('admin/project/update', data,
                                 function(data, textStatus, xhr) {

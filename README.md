@@ -16,6 +16,8 @@ TMS是一个响应式的开源团队协作系统，基于频道模式进行团�
 
 - 修改了着陆页面
 - 优化了部署流程
+- 集成了onlyoffice
+- 优化了项目前端
 - 其他细节的调整
 
 我们感谢原项目的贡献者,并希望我们的修改能为更多用户带来价值。如有任何问题或建议,欢迎联系我们。
@@ -137,7 +139,6 @@ wget https://raw.githubusercontent.com/7Sageer/tms/master/docker-compose-remote.
 docker-compose -f docker-compose-remote.yml up -d
 ```
 
-
 ## 功能概述
 
 ### 团队协作沟通
@@ -151,6 +152,7 @@ docker-compose -f docker-compose-remote.yml up -d
 - 📁 文件上传和分享
 - 📬 邮件通知、桌面通知、Toastr通知
 - 🎨 自定义皮肤色调
+- 📝 支持通过onlyoffice协作编辑文档
 
 ### 团队博文 (Wiki)
 
